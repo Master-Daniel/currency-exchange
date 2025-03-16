@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios';
 import axiosRateLimit from 'axios-rate-limit';
-const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"; // Public Proxy
+// const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"; // Public Proxy
 const API_BASE_URL = import.meta.env.VITE_EXCHANGE_API;
 
 // Define the type for the response data you expect
@@ -11,7 +11,7 @@ interface ResponseData {
 
 const axiosInstance = axiosRateLimit(
     axios.create({
-        baseURL: `${CORS_PROXY}${API_BASE_URL}`,
+        baseURL: API_BASE_URL,
         withCredentials: false, // Ensure credentials are disabled
     }),
     { maxRPS: 5 }
