@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 import { Outlet } from "react-router-dom";
 
@@ -10,6 +11,7 @@ const Layout: React.FC = () => {
             <main className="container mx-auto p-6">
                 <Outlet />
             </main>
+            <Footer />
         </div>
     );
 };
