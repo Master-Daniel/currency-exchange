@@ -20,8 +20,9 @@ const History: React.FC = () => {
             setError(null);
 
             try {
+                const endDate = selectedDate ? new Date(selectedDate) : new Date();
                 const formattedDates = Array.from({ length: 7 }, (_, i) =>
-                    format(subDays(selectedDate, i), "yyyy-MM-dd")
+                    format(subDays(endDate, i), "yyyy-MM-dd")
                 );
 
                 const promises = formattedDates.map(date =>
