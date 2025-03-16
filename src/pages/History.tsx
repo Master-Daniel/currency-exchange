@@ -21,16 +21,10 @@ const History: React.FC = () => {
 
             try {
                 let formattedDates: string[] = [];
-                const isToday = format(selectedDate, "yyyy-MM-dd") === format(new Date(), "yyyy-MM-dd");
-
-                if (isToday) {
-                    const pastDays = 7;
-                    formattedDates = Array.from({ length: pastDays }, (_, i) =>
-                        format(subDays(new Date(), i), "yyyy-MM-dd")
-                    );
-                } else {
-                    formattedDates = [format(selectedDate, "yyyy-MM-dd")];
-                }
+                const pastDays = 7;
+                formattedDates = Array.from({ length: pastDays }, (_, i) =>
+                    format(subDays(new Date(), i), "yyyy-MM-dd")
+                );
 
                 const promises = formattedDates.map(date => fetchHistoricalRates(baseCurrency, targetCurrency, date));
                 const results = await Promise.all(promises);
@@ -40,7 +34,7 @@ const History: React.FC = () => {
                     rate: rate ?? 0,
                 }));
 
-                setHistoricalData(isToday ? formattedData.reverse() : formattedData);
+                setHistoricalData(formattedData.reverse());
             } catch (error) {
                 console.log(error)
                 setError("Error fetching historical data.");
@@ -57,7 +51,7 @@ const History: React.FC = () => {
             <h2 className="text-lg font-semibold mb-4 text-center">Historical Exchange Rates</h2>
 
             <div className="flex flex-col sm:flex-row justify-center items-center sm:space-x-4 space-y-4 sm:space-y-0 mb-4">
-                
+
                 <div className="w-full sm:w-58">
                     <CurrencySelector onChange={setBaseCurrency} type="base" />
                 </div>
