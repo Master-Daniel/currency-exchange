@@ -48,4 +48,4 @@ This will start up a development server with which you can use to access the web
 
 ```
 
-*Note: your mobile device must be connected to the same internet (wifi) for you to be able to access the website via your mobile device*
+*Note: your mobile device must be connected to the same internet (wifi) as your computer for you to be able to access the website via your mobile device*
