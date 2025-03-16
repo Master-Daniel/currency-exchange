@@ -20,13 +20,13 @@ const History: React.FC = () => {
             setError(null);
 
             try {
-                let formattedDates: string[] = [];
-                const pastDays = 7;
-                formattedDates = Array.from({ length: pastDays }, (_, i) =>
+                const formattedDates = Array.from({ length: 7 }, (_, i) =>
                     format(subDays(new Date(), i), "yyyy-MM-dd")
                 );
 
-                const promises = formattedDates.map(date => fetchHistoricalRates(baseCurrency, targetCurrency, date));
+                const promises = formattedDates.map(date =>
+                    fetchHistoricalRates(baseCurrency, targetCurrency, date)
+                );
                 const results = await Promise.all(promises);
 
                 const formattedData = results.map((rate, i) => ({
@@ -36,7 +36,7 @@ const History: React.FC = () => {
 
                 setHistoricalData(formattedData.reverse());
             } catch (error) {
-                console.log(error)
+                console.log(error);
                 setError("Error fetching historical data.");
             } finally {
                 setLoading(false);
