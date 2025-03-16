@@ -25,6 +25,7 @@ npm install
 create a .env file at the root directory of the project "currency-exchange" with the following variable and values
 
 ```
+NODE_ENV=development or production (if not set, default is production)
 VITE_EXCHANGE_API="https://cdn.jsdelivr.net/npm/@fawazahmed0"
 ```
 
